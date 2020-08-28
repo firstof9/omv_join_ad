@@ -359,7 +359,7 @@ while [ $c -ne 20 ]
         echo "###"
         ((c+=30))
         sleep 1
-        net ads join -U"$admin_user"%"$admin_pass" --request-timeout 10 &>/dev/null
+        net ads join -S "${hostname_ad,,}" -U"$admin_user"%"$admin_pass" --request-timeout 10 &>/dev/null
 
 echo "$c"
         echo "###"
@@ -381,7 +381,7 @@ break
 done
 ) |
 whiptail --title "Server Integration" \
-         ---backtitle "$backtitle" \
+         --backtitle "$backtitle" \
          --gauge "Wait for the servers to be integrated and synchronized ...." 10 60 0 
 
 
